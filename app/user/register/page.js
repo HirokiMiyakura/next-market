@@ -11,18 +11,21 @@ const Register = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await fetch('http://localhost:3000/api/user/register', {
-				method: 'POST',
-				header: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					name: name,
-					email: email,
-					password: password,
-				}),
-			});
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_URL}/api/user/register`,
+				{
+					method: 'POST',
+					header: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						name: name,
+						email: email,
+						password: password,
+					}),
+				}
+			);
 			const jsonData = await response.json();
 			alert(jsonData.message);
 		} catch (error) {
